@@ -1,0 +1,48 @@
+﻿
+
+EVALUATE 
+SUMMARIZE(
+	Sales,
+	Sales[SalesSK],
+	Sales[RevenueQty],
+	Sales[Revenue]
+	)
+	
+	
+Evaluate 
+CALCULATETABLE(
+Sales,
+Sales[Revenue] < 0 
+)
+
+
+EVALUATE
+SUMMARIZE(
+FILTER(Sales,Sales[Revenue] < 0),
+Sales[SegmentSK],
+Segments[SegmentName],
+"Total Returns by Segments",[Total Sales])
+ORDER BY [Total Sales] desc
+
+
+
+-------------------------------------------------------------------------
+
+EVALUATE
+SUMMARIZE (
+    FILTER ( Regions, Regions[Country] = "China" ),
+    Regions[country],
+    "Total Orders China", [OrderQuantity]
+)
+
+----------------------------------------------------------------------------
+
+evaluate(
+         summarize(
+                   Sales,
+                   Sales[ProductSK], Products[ProductName],
+                   "Total Sales of the Product", SUM(Sales[Revenue]),
+                   "Average Sales of the Product", AVERAGE(Sales[Revenue])
+                )
+)
+order by Products[ProductName]
