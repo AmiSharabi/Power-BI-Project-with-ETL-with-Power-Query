@@ -1,6 +1,18 @@
+Use master
+go
 
+IF EXISTS(select * from sys.databases where name='Happy_Insurance')
 DROP DATABASE Happy_Insurance
-drop function fn_calender
+go
+
+
+Create database Happy_Insurance
+go
+
+USE Happy_Insurance
+GO
+
+
 
 create function fn_Calender()
 returns @Calender TABLE 
@@ -38,6 +50,8 @@ begin
 return
 end
 
+go
+
 create table [dbo].[Dim_Date] (
 	DateKey int,
 	[Date] date,
@@ -52,24 +66,9 @@ create table [dbo].[Dim_Date] (
 INSERT INTO dbo.Dim_Date
 	Select * from fn_Calender()
 
-	drop table Dim_Date
 
 -----------------------------------Create database Happy_Insurance--------------------------------------------------------------------------------------
 
-
-Use master
-go
-
-IF EXISTS(select * from sys.databases where name='Happy_Insurance')
-DROP DATABASE Happy_Insurance
-go
-
-
-Create database Happy_Insurance
-go
-
-USE Happy_Insurance
-GO
 
 
 
